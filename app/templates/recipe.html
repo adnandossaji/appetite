@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block page %}{{title}}{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+  <img src="{{ response.json.image }}" class="img-rounded" style="max-width: 670px;"/>
+
+  <h2>Ingredients:</h2>
+  <ul>
+  {% for item in response.json.extendedIngredients %}
+    <li>{{ item.originalString | safe }}</li>
+  {% endfor %}
+  </ul>
+
+  <h2>Directions:</h2>
+  <p>{{ response.json.instructions | safe }}</p>
+
+  {% block footer %}
+  {% endblock %}
+{% endblock %}

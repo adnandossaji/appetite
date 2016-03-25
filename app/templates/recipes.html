@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block page %}{{title}}{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+    {% for recipe_row in response.json | batch(4, '&nbsp;') %}
+        <div class="row" style="padding:10px 0 10px 0;">
+            {% for recipe in recipe_row %}
+            <div class="col-xs-6 col-sm-3">
+                <a href="/recipe?id={{ recipe.id }}">
+                    <img src="{{ recipe.image }}" class="img-rounded" style="max-width: 140px;max-height: 140px;"/>
+                </a>
+                <h4>{{ recipe.title }}</h4>
+                <p>{{ recipe.extraIngredients }} extra ingredients</p>
+            </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+  {% block footer %}
+  {% endblock %}
+{% endblock %}
