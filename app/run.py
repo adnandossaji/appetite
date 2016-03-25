@@ -103,4 +103,4 @@ def inject_enumerate():
     )
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host= '104.236.44.120')
